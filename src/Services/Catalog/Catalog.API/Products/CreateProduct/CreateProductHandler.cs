@@ -23,7 +23,7 @@ internal class CreateProductCommandHandler :
             Price = command.Price
         };
 
-        // TODO: save to database
+        // save to database
         // return result
         return new CreateProductResult(Guid.NewGuid());
 
