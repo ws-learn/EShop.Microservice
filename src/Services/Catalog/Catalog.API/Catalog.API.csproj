@@ -14,10 +14,6 @@
     <PackageReference Include="Carter" Version="9.0.0" />
     <PackageReference Include="Marten" Version="8.10.0" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Products/GetProduct/" />
-  </ItemGroup>
 </Project>
 
 
