@@ -5,6 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "C#: Basket.API Debug",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/src/Services/Basket/Basket.API/Basket.API.csproj"
+        },
+        {
             "name": "C#: Catalog.API Debug",
             "type": "dotnet",
             "request": "launch",
