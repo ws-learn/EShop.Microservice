@@ -1,6 +1,30 @@
 # Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
 
 services:
+  catalogapi:
+    container_name: catalogapi
+    image: catalogapi
+    ports:
+      - 6000:8080
+      - 6060:8081
+    build:
+      context: .
+      dockerfile: src/Services/Catalog/Catalog.API/Dockerfile
+      args:
+        - configuration=Debug
+    platform: linux/amd64
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Server=catalogdb;Port=5432;Database=CatalogDb;User Id=postgres;Password=postgres;Include Error Detail=true
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=passw0rd123!
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    depends_on:
+      - catalogdb
+    volumes:
+      - ./certs:/https/
+
   catalogdb:
     image: postgres:latest
     container_name: catalogdb
