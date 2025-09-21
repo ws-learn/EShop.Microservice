@@ -24,6 +24,12 @@ services:
       - catalogdb
     volumes:
       - ./certs:/https/
+  distributedcache:
+    image: redis:latest
+    container_name: distributedcache
+    restart: always
+    ports:
+      - "6379:6379"
 
   catalogdb:
     image: postgres:latest
