@@ -17,7 +17,16 @@
             "projectPath": "${workspaceFolder}/src/Services/Catalog/Catalog.API/Catalog.API.csproj"
         },
         {
-            "name": "Containers: .NET Launch",
+            "name": "Basket.API Containers: .NET Launch",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: debug",
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/Services/Basket/Basket.API/Basket.API.csproj"
+            }
+        },
+        {
+            "name": "Catalog.API Containers: .NET Launch",
             "type": "docker",
             "request": "launch",
             "preLaunchTask": "docker-run: debug",
