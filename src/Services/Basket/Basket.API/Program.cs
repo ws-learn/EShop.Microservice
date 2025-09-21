@@ -1,6 +1,7 @@
 
 using BuildingBlocks.Behaviors;
 using BuildingBlocks.Exceptions.Handler;
+using Microsoft.Extensions.Caching.Distributed;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,6 +22,19 @@ builder.Services.AddMarten(opts =>
 }).UseLightweightSessions();
 
 builder.Services.AddScoped<IBasketRepository, BasketRepository>();
+builder.Services.Decorate<IBasketRepository, CachedBasketRepository>();
+/** This is decorator pattern, which this process of registering decorator can be simplified by using Scrutor library */
+// builder.Services.AddScoped<IBasketRepository>(provider =>
+// {
+//     var BasketRepository = provider.GetRequiredService<BasketRepository>();
+//     return new CachedBasketRepository(BasketRepository, provider.GetRequiredService<IDistributedCache>();
+// });
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("Redis");
+    options.InstanceName = "Basket";
+});
+
 builder.Services.AddExceptionHandler<CustomExceptionHandler>();
 
 var app = builder.Build();
