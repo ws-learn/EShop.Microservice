@@ -5,6 +5,12 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "C#: Discount.gRPC Debug",
+            "type": "dotnet",
+            "request": "launch",
+            "projectPath": "${workspaceFolder}/src/Services/Discount/Discount.Grpc/Discount.Grpc.csproj"
+        },
+        {
             "name": "C#: Basket.API Debug",
             "type": "dotnet",
             "request": "launch",
