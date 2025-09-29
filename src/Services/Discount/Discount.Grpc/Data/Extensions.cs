@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.StaticAssets;
 using Microsoft.EntityFrameworkCore;
 
 namespace Discount.Grpc.Data;

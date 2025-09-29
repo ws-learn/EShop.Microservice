@@ -80,11 +80,39 @@ services:
 
   #others section
   distributedcache:
-    image: redis:latest
     container_name: distributedcache
+    image: redis:latest
     restart: always
     ports:
       - "6379:6379"
+
+  discountrpc:
+    container_name: discountrpc
+    image: discountrpc
+    ports:
+      - 6002:8080
+      - 6062:8081
+    build:
+      context: .
+      dockerfile: src/Services/Discount/Discount.Grpc/Dockerfile
+      args:
+        - configuration=Debug
+    platform: linux/amd64
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Data Source=discountdb/discount.db
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=passw0rd123!
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+      - Kestrel__Endpoints__GrpcHttp__Url=http://0.0.0.0:8080
+      - Kestrel__Endpoints__GrpcHttp__Protocols=Http2
+      - Kestrel__Endpoints__GrpcHttps__Url=https://0.0.0.0:8081
+      - Kestrel__Endpoints__GrpcHttps__Protocols=Http2
+
+    volumes:
+      - ./certs:/https/
+      - ./discount.db:/app/discountdb
 
 volumes:
   postgres_catalog:
