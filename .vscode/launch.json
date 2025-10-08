@@ -23,24 +23,6 @@
             "projectPath": "${workspaceFolder}/src/Services/Catalog/Catalog.API/Catalog.API.csproj"
         },
         {
-            "name": "Basket.API Containers: .NET Launch",
-            "type": "docker",
-            "request": "launch",
-            "preLaunchTask": "docker-run: debug",
-            "netCore": {
-                "appProject": "${workspaceFolder}/src/Services/Basket/Basket.API/Basket.API.csproj"
-            }
-        },
-        {
-            "name": "Catalog.API Containers: .NET Launch",
-            "type": "docker",
-            "request": "launch",
-            "preLaunchTask": "docker-run: debug",
-            "netCore": {
-                "appProject": "${workspaceFolder}/src/Services/Catalog/Catalog.API/Catalog.API.csproj"
-            }
-        },
-        {
             "name": ".NET Core Launch (web)",
             "type": "coreclr",
             "request": "launch",
@@ -61,9 +43,33 @@
             }
         },
         {
-            "name": ".NET Core Attach",
-            "type": "coreclr",
-            "request": "attach"
+            "name": "Basket.API Containers: .NET Launch",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "Run Container",
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/Services/Basket/Basket.API/Basket.API.csproj"
+            }
+        },
+        {
+            "name": "Catalog.API Containers: .NET Launch",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: debug",
+            "platform": "netCore",
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/Services/Catalog/Catalog.API/Catalog.API.csproj"
+            }
+        },
+        {
+            "name": "Discount.Grpc Containers: .NET Launch",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: debug",
+            "platform": "netCore",
+            "netCore": {
+                "appProject": "${workspaceFolder}/src/Services/Discount/Discount.Grpc/Discount.Grpc.csproj"
+            }
         },
         {
             "name": "Containers: .NET Launch",
@@ -71,8 +77,19 @@
             "request": "launch",
             "preLaunchTask": "docker-run: debug",
             "netCore": {
-                "appProject": "${workspaceFolder}/src/Services/Discount/Discount.Grpc/Discount.Grpc.csproj"
+                "appProject": "${workspaceFolder}/src/Services/Catalog/Catalog.API/Catalog.API.csproj"
             }
+        }
+    ],
+    "compounds": [
+        {
+            "name": "All Project Containers: Container .NET Launch",
+            "configurations": [
+                "Basket.API Containers: .NET Launch",
+                "Catalog.API Containers: .NET Launch",
+                "Discount.Grpc Containers: .NET Launch"
+            ],
+            "stopAll": true
         }
     ]
 }
