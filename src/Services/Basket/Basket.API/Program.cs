@@ -42,6 +42,17 @@ builder.Services.AddStackExchangeRedisCache(options =>
 builder.Services.AddGrpcClient<DiscountProtoService.DiscountProtoServiceClient>(options =>
 {
     options.Address = new Uri(builder.Configuration["GrpcSettings:DiscountUrl"]!);
+})
+//CAUTION: Bypass Certification Validation is for DEV environment, not for PROD!
+.ConfigurePrimaryHttpMessageHandler(() =>
+{
+    var handler = new HttpClientHandler
+    {
+        ServerCertificateCustomValidationCallback =
+        HttpClientHandler.DangerousAcceptAnyServerCertificateValidator
+    };
+
+    return handler;
 });
 
 //Cross-cuting Services

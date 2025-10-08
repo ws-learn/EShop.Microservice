@@ -52,16 +52,6 @@
             }
         },
         {
-            "name": "Catalog.API Containers: .NET Launch",
-            "type": "docker",
-            "request": "launch",
-            "preLaunchTask": "docker-run: debug",
-            "platform": "netCore",
-            "netCore": {
-                "appProject": "${workspaceFolder}/src/Services/Catalog/Catalog.API/Catalog.API.csproj"
-            }
-        },
-        {
             "name": "Discount.Grpc Containers: .NET Launch",
             "type": "docker",
             "request": "launch",
@@ -72,7 +62,7 @@
             }
         },
         {
-            "name": "Containers: .NET Launch",
+            "name": "Catalog.API Containers: .NET Launch",
             "type": "docker",
             "request": "launch",
             "preLaunchTask": "docker-run: debug",
@@ -90,6 +80,15 @@
                 "Discount.Grpc Containers: .NET Launch"
             ],
             "stopAll": true
+        },
+        {
+            "name": "Basket & Discount (LOCAL)",
+            "configurations": [
+                "C#: Discount.gRPC Debug",
+                "C#: Basket.API Debug",
+            ],
+            "stopAll": true
         }
+        
     ]
 }
