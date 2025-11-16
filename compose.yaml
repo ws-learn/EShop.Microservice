@@ -44,15 +44,45 @@ services:
       - ConnectionStrings__Database=Server=basketdb;Port=5432;Database=BasketDb;User Id=postgres;Password=postgres;Include Error Detail=true
       - ConnectionStrings__Redis=distributedcache:6379
       - GrpcSettings__DiscountUrl=https://discountrpc:8081
+      - MessageBroker__Host=amqp://ecommerce-mq:5672
+      - MessageBroker__UserName=guest
+      - MessageBroker__Password=guest
       - ASPNETCORE_Kestrel__Certificates__Default__Password=passw0rd123!
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     depends_on:
       - basketdb
       - distributedcache
       - discountrpc
+      - messagebroker
     volumes:
       - ./certs:/https/
-
+  orderingapi:
+    container_name: orderingapi
+    image: orderingapi
+    ports:
+      - 6003:8080
+      - 6063:8081
+    build:
+      context: .
+      dockerfile: src/Services/Ordering/Ordering.API/Dockerfile
+      args:
+        - configuration=Debug
+    platform: linux/amd64
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ConnectionStrings__Database=Server=orderdb;Database=OrderDb;User Id=sa;Password=SwN12345678;Encrypt=False;TrustServerCertificate=True;
+      - MessageBroker__Host=amqp://ecommerce-mq:5672
+      - MessageBroker__UserName=guest
+      - MessageBroker__Password=guest
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=passw0rd123!
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    depends_on:
+      - orderdb
+      - messagebroker
+    volumes:
+      - ./certs:/https/      
   # database section
   catalogdb:
     image: postgres:latest
@@ -90,7 +120,7 @@ services:
       - SA_PASSWORD=SwN12345678
       - platform=linux/amd64
     healthcheck:
-      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P Passw0rd123! -Q "select 1"
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P SwN12345678 -Q "select 1"
       interval: 30s
       timeout: 30s
       retries: 3
@@ -98,6 +128,18 @@ services:
     ports:
       - "1433:1433"
   #others section
+  messagebroker:
+    container_name: messagebroker
+    image: rabbitmq:management
+    hostname: ecommerce-mq
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    
   distributedcache:
     container_name: distributedcache
     image: redis:latest
