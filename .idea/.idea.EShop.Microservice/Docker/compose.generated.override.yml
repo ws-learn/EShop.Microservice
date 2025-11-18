@@ -1,0 +1,92 @@
+# This is a generated file. Not intended for manual editing.
+services:
+  basketapi:
+    build:
+      context: "/Users/wilsonting/Documents/Coding/EShop.Microservice"
+      dockerfile: "src/Services/Basket/Basket.API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/Basket.API.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "basketapi:dev"
+    ports: []
+    volumes:
+    - "/Users/wilsonting/Documents/Coding/EShop.Microservice/src/Services/Basket/Basket.API:/app:rw"
+    - "/Users/wilsonting/Documents/Coding/EShop.Microservice:/src:rw"
+    - "/Users/wilsonting/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"
+  catalogapi:
+    build:
+      context: "/Users/wilsonting/Documents/Coding/EShop.Microservice"
+      dockerfile: "src/Services/Catalog/Catalog.API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/Catalog.API.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "catalogapi:dev"
+    ports: []
+    volumes:
+    - "/Users/wilsonting/Documents/Coding/EShop.Microservice/src/Services/Catalog/Catalog.API:/app:rw"
+    - "/Users/wilsonting/Documents/Coding/EShop.Microservice:/src:rw"
+    - "/Users/wilsonting/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"
+  discountrpc:
+    build:
+      context: "/Users/wilsonting/Documents/Coding/EShop.Microservice"
+      dockerfile: "src/Services/Discount/Discount.Grpc/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/Discount.Grpc.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "discountrpc:dev"
+    ports: []
+    volumes:
+    - "/Users/wilsonting/Documents/Coding/EShop.Microservice/src/Services/Discount/Discount.Grpc:/app:rw"
+    - "/Users/wilsonting/Documents/Coding/EShop.Microservice:/src:rw"
+    - "/Users/wilsonting/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"
+  orderingapi:
+    build:
+      context: "/Users/wilsonting/Documents/Coding/EShop.Microservice"
+      dockerfile: "src/Services/Ordering/Ordering.API/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/Ordering.API.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "orderingapi:dev"
+    ports: []
+    volumes:
+    - "/Users/wilsonting/Documents/Coding/EShop.Microservice/src/Services/Ordering/Ordering.API:/app:rw"
+    - "/Users/wilsonting/Documents/Coding/EShop.Microservice:/src:rw"
+    - "/Users/wilsonting/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"
+  yarpapigateway:
+    build:
+      context: "/Users/wilsonting/Documents/Coding/EShop.Microservice"
+      dockerfile: "src/YarpApiGateway/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/YarpApiGateway.dll"
+    environment:
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "yarpapigateway:dev"
+    ports: []
+    volumes:
+    - "/Users/wilsonting/Documents/Coding/EShop.Microservice/src/YarpApiGateway:/app:rw"
+    - "/Users/wilsonting/Documents/Coding/EShop.Microservice:/src:rw"
+    - "/Users/wilsonting/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"

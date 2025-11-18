@@ -171,11 +171,29 @@ services:
       - Kestrel__Endpoints__GrpcHttp__Protocols=Http2
       - Kestrel__Endpoints__GrpcHttps__Url=https://0.0.0.0:8081
       - Kestrel__Endpoints__GrpcHttps__Protocols=Http2
-
     volumes:
       - ./certs:/https/
       - ./discount.db:/app/discountdb
-
+  yarpapigateway:
+    image: yarpapigateway
+    build:
+      context: .
+      dockerfile: src/YarpApiGateway/Dockerfile
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_HTTP_PORTS=8080
+      - ASPNETCORE_HTTPS_PORTS=8081
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=passw0rd123!
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    ports:
+      - 6004:8080
+      - 6064:8081
+    depends_on:
+      - catalogapi
+      - basketapi
+      - orderingapi
+    volumes:
+      - ./certs:/https/
 volumes:
   postgres_catalog:
   postgres_basket:
