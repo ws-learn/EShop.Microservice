@@ -2,15 +2,7 @@
 
 services:
   catalogapi:
-    image: catalogapi
-    build:
-      context: .
-      dockerfile: src/Services/Catalog/Catalog.API/Dockerfile
-      args:
-        - configuration=Debug
-    ports:
-      - 5050:5050
     environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+      - DOTNET_USE_POLLING_FILE_WATCHER=true
     volumes:
-      - ~/.vsdbg:/remote_debugger:rw
+      - ./src/Services/Catalog/Catalog.API:/app

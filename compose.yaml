@@ -76,6 +76,7 @@ services:
       - MessageBroker__Host=amqp://ecommerce-mq:5672
       - MessageBroker__UserName=guest
       - MessageBroker__Password=guest
+      - FeatureManagement__OrderFulfillment=false
       - ASPNETCORE_Kestrel__Certificates__Default__Password=passw0rd123!
       - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
     depends_on:
@@ -178,3 +179,4 @@ services:
 volumes:
   postgres_catalog:
   postgres_basket:
+
