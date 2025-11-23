@@ -1,4 +1,6 @@
 .vs/
 bin/
 obj/
-/discount.db/
+/discount.db
+/EShop.Microservice.sln.DotSettings.user
+/dataSources.xml

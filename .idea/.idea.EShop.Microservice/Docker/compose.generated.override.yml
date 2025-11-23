@@ -72,6 +72,25 @@ services:
     - "/Users/wilsonting/Documents/Coding/EShop.Microservice:/src:rw"
     - "/Users/wilsonting/.nuget/packages:/home/app/.nuget/packages"
     working_dir: "/app"
+  shoppingweb:
+    build:
+      context: "/Users/wilsonting/Documents/Coding/EShop.Microservice"
+      dockerfile: "src/Shopping.Web/Dockerfile"
+      target: "base"
+    command: []
+    entrypoint:
+    - "dotnet"
+    - "/app/bin/Debug/net9.0/Shopping.Web.dll"
+    environment:
+      ASPNETCORE_STATICWEBASSETS: "/app/bin/Debug/net9.0/Shopping.Web.staticwebassets.runtime.CT.json"
+      DOTNET_USE_POLLING_FILE_WATCHER: "true"
+    image: "shoppingweb:dev"
+    ports: []
+    volumes:
+    - "/Users/wilsonting/Documents/Coding/EShop.Microservice/src/Shopping.Web:/app:rw"
+    - "/Users/wilsonting/Documents/Coding/EShop.Microservice:/src:rw"
+    - "/Users/wilsonting/.nuget/packages:/home/app/.nuget/packages"
+    working_dir: "/app"
   yarpapigateway:
     build:
       context: "/Users/wilsonting/Documents/Coding/EShop.Microservice"
