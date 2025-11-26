@@ -1,9 +1,9 @@
 {
 	"info": {
-		"_postman_id": "f00e126b-3521-4034-b400-b790fc45d65a",
+		"_postman_id": "1d2aa2de-3d96-4574-9858-1e1db878dbc5",
 		"name": "EShopMicroservices",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "2848550"
+		"_exporter_id": "5340191"
 	},
 	"item": [
 		{
@@ -190,7 +190,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\t\"Cart\": \r\n        {\r\n            \"UserName\": \"swn\",\r\n            \"Items\": [\r\n                {\r\n                \"Quantity\": 2,\r\n                \"Color\": \"Red\",\r\n                \"Price\": 500,\r\n                \"ProductId\": \"5334c996-8457-4cf0-815c-ed2b77c4ff61\",\r\n                \"ProductName\": \"IPhone X\"\r\n                },\r\n                {\r\n                \"Quantity\": 1,\r\n                \"Color\": \"Blue\",\r\n                \"Price\": 500,\r\n                \"ProductId\": \"c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914\",\r\n                \"ProductName\": \"Samsung 10\"\r\n                }\r\n            ]  \r\n        }\r\n}",
+							"raw": "{\r\n    \"Cart\": {\r\n        \"UserName\": \"swn\",\r\n        \"Items\": [\r\n            {\r\n                \"Quantity\": 2,\r\n                \"Color\": \"Yellow\",\r\n                \"Price\": 500,\r\n                \"ProductId\": \"5334c996-8457-4cf0-815c-ed2b77c4ff61\",\r\n                \"ProductName\": \"IPhone 17 Pro X\"\r\n            },\r\n            {\r\n                \"Quantity\": 1,\r\n                \"Color\": \"Blue\",\r\n                \"Price\": 500,\r\n                \"ProductId\": \"c67d6323-e8b1-4bdf-9a75-b0d0d2e7e914\",\r\n                \"ProductName\": \"Samsung 10\"\r\n            }\r\n        ]\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -338,7 +338,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{ordering_url}}/orders?PageIndex=0&PageSize=2",
+							"raw": "{{ordering_url}}/orders?PageIndex=0&PageSize=5",
 							"host": [
 								"{{ordering_url}}"
 							],
@@ -352,7 +352,7 @@
 								},
 								{
 									"key": "PageSize",
-									"value": "2"
+									"value": "5"
 								}
 							]
 						}
